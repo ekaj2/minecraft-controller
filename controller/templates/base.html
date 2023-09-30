@@ -1,82 +1,81 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
-    <head>
-        <style>
-.body{
-  font-family: 'Inter', sans-serif;
-}
+  <head>
+    <style>
+        .body {
+            font-family: 'Inter', sans-serif;
+        }
 
-.content {
-  flex-grow: 1;
-  margin-left: 335px;  /* Sidebar width + 35 */
-  margin-right: 35px;
-}
+        .content {
+            flex-grow: 1;
+            margin-left: 335px;
+            /* Sidebar width + 35 */
+            margin-right: 35px;
+        }
 
-.content-caps-header {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-  color: #666666;
-}
+        .content-caps-header {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 12px;
+            color: #666666;
+        }
 
-.content-main-header {
-  margin-top: 20px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 25px;
-  color: #000000;
-}
+        .content-main-header {
+            margin-top: 20px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 25px;
+            color: #000000;
+        }
 
-.content-sub-header {
-  margin-bottom: 20px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 300;
-  font-size: 15px;
-  color: #444444;
-}
-
-        </style>
-        <title>Minecraft Controller</title>
-        {% load static %}
-        <meta name="Minecraft Controller"
-              content="width=device-width, initial-scale=1.0">
-        <!-- Inter font -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap"
-              rel="stylesheet">
-        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-        <script src="https://unpkg.com/htmx.org@1.9.6"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-              rel="stylesheet"
-              integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-              crossorigin="anonymous">
-        <!-- bootstrap-seleect latest compiled and minified css -->
-        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
-    </head>
-    <body class="body" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
-        {% block body %}Missing body{% endblock %}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-                crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"
-                integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-                crossorigin="anonymous"></script>
-        <!-- bootstrap-select Latest compiled and minified JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
-        {% block scripts %}{% endblock %}
-        <script data-collect-dnt="true"
-                async
-                defer
-                src="https://sa.prompteditor.io/latest.js"></script>
-        <noscript>
-            <img src="https://sa.prompteditor.io/noscript.gif"
-                 alt=""
-                 referrerpolicy="no-referrer-when-downgrade" />
-        </noscript>
-    </body>
+        .content-sub-header {
+            margin-bottom: 20px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: 15px;
+            color: #444444;
+        }
+    </style>
+    <title>Minecraft Controller</title>
+    {% load static %}
+    <meta name="Minecraft Controller"
+          content="width=device-width, initial-scale=1.0">
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap"
+          rel="stylesheet">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+    <!-- bootstrap-seleect latest compiled and minified css -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
+  </head>
+  <body class="body" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    {% block body %}Missing body{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+            integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+            crossorigin="anonymous"></script>
+    <!-- bootstrap-select Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
+    {% block scripts %}{% endblock %}
+    <script data-collect-dnt="true"
+            async
+            defer
+            src="https://sa.prompteditor.io/latest.js"></script>
+    <noscript>
+      <img src="https://sa.prompteditor.io/noscript.gif"
+           alt=""
+           referrerpolicy="no-referrer-when-downgrade" />
+    </noscript>
+  </body>
 </html>
