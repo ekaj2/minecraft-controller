@@ -1,32 +1,34 @@
 {% extends "base.html" %}
 {% block body %}
   <div class="d-flex justify-content-center align-items-center"
-       style="height: 100vh">
-    <div>
-      <form method="post" class="needs-validation" novalidate>
-        {% csrf_token %}
-        <div class="form-floating mx-auto">
-          <input type="email"
-                 name="username"
-                 class="form-control"
-                 id="username"
-                 placeholder="Username" />
-          <label for="username">Username</label>
-          <div class="invalid-feedback">Please provide a username.</div>
-        </div>
-        <div class="form-floating mx-auto">
-          <input type="password"
-                 name="password"
-                 class="form-control"
-                 id="password"
-                 placeholder="Password" />
-          <label for="password">Password</label>
-          <div class="invalid-feedback">Please provide a password.</div>
-        </div>
-        <div class="form-button mx-auto mb-5">
-          <button type="submit" class="btn btn-lg btn-primary w-100">Log in</button>
-        </div>
-      </form>
-    </div>
+       style="height: 100vh;
+              width: 100vw">
+    <form method="post"
+          class="needs-validation w-100"
+          novalidate
+          style="max-width: 400px">
+      {% csrf_token %}
+      <div class="form-floating mb-2">
+        <input type="email"
+               name="username"
+               class="form-control"
+               id="username"
+               placeholder="Username" />
+        <label for="username">Username</label>
+        <div class="invalid-feedback">Please provide a username.</div>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="password"
+               name="password"
+               class="form-control"
+               id="password"
+               placeholder="Password" />
+        <label for="password">Password</label>
+        <div class="invalid-feedback">Please provide a password.</div>
+      </div>
+      <div class="form-button mb-5">
+        <button type="submit" class="btn btn-lg btn-primary w-100">--></button>
+      </div>
+    </form>
   </div>
 {% endblock %}
