@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "minecraft control web app"
+version = "0.1.0"
+description = ""
+authors = ["Jake Duth <jakeduth2@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+boto3 = "^1.28.57"
+Django = "^4.2.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
