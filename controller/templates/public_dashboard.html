@@ -1,11 +1,20 @@
-<html>
-  <body>
-    <div>
-      {% if server_is_up %}
-        <strong>Hurray!</strong> Server is up.
-      {% else %}
-        <strong>Oh snap!</strong> Server is down.
-      {% endif %}
+{% extends "base.html" %}
+{% block body %}
+    <div class="d-flex justify-content-center align-items-center"
+         style="height: 100vh">
+        <div class="justify-content-center align-items-center">
+            {% if server_is_up %}
+                <h1>
+                    <strong>Hurray!</strong> Server is up.
+                </h1>
+            {% else %}
+                <h1>
+                    <strong>Oh snap!</strong> Server is down.
+                </h1>
+            {% endif %}
+            <div class="d-flex justify-content-center mt-5">
+                <a href="login" class="btn btn-outline-warning">Manage Server</a>
+            </div>
+        </div>
     </div>
-  </body>
-</html>
+{% endblock %}
