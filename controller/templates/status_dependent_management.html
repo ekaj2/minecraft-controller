@@ -1,25 +1,25 @@
-            {% if server_is_up %}
-                <h1>
-                    <strong>Hurray!</strong> Server is up.
-                </h1>
-                {% if user.is_authenticated %}
-                    <div class="d-flex justify-content-center mt-5">
-                        <button hx-post="{% url 'stop-server' %}"
-                                hx-target="#main-div"
-                                type="button"
-                                class="btn btn-lg btn-outline-danger">Stop Server</button>
-                    </div>
-                {% endif %}
-            {% else %}
-                <h1>
-                    <strong>Oh snap!</strong> Server is down.
-                </h1>
-                {% if user.is_authenticated %}
-                    <div class="d-flex justify-content-center mt-5">
-                        <button hx-post="{% url 'start-server' %}"
-                                hx-target="#main-div"
-                                type="button"
-                                class="btn btn-lg btn-outline-success">Start Server</button>
-                    </div>
-                {% endif %}
-            {% endif %}
+{% if server_is_running %}
+  <h1>
+    <strong>Hurray!</strong> Server is up.
+  </h1>
+  {% if user.is_authenticated %}
+    <div class="d-flex justify-content-center mt-5">
+      <button hx-post="{% url 'stop-server' %}"
+              hx-target="#main-div"
+              type="button"
+              class="btn btn-lg btn-outline-danger">Stop Server</button>
+    </div>
+  {% endif %}
+{% else %}
+  <h1>
+    <strong>Oh snap!</strong> Server is down.
+  </h1>
+  {% if user.is_authenticated %}
+    <div class="d-flex justify-content-center mt-5">
+      <button hx-post="{% url 'start-server' %}"
+              hx-target="#main-div"
+              type="button"
+              class="btn btn-lg btn-outline-success">Start Server</button>
+    </div>
+  {% endif %}
+{% endif %}
