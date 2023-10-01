@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 import boto3
 
-ec2 = boto3.client('ec2', region_name='us-west-2')
+ec2 = boto3.client('ec2', region_name='us-east-1')
 
 
 def public_dashboard(request):
