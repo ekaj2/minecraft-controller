@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-5_%+do5^=n_ls+c&ov2wvti^p+5tgx)p#_t-76!e422yk4up34
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['shinyobjects.io', '127.0.0.1']
 
 
 # Application definition
@@ -122,3 +122,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_REDIRECT_URL = "/dashboard/"
+LOGIN_URL = "/login/"
