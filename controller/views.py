@@ -11,11 +11,9 @@ ec2 = boto3.client('ec2', region_name='us-east-1')
 
 def public_dashboard(request):
     server_is_up = False
-    try:
-        response = ec2.describe_instances(InstanceIds=['i-03beacf50b1544822'])
-        server_is_up = response['Reservations'][0]['Instances'][0]['State']['Name'] == 'running'
-    except:
-        pass
+    response = ec2.describe_instances(InstanceIds=['i-03beacf50b1544822'])
+    print(response['Reservations'][0]['Instances'][0]['State']['Name'])
+    server_is_up = response['Reservations'][0]['Instances'][0]['State']['Name'] == 'running'
     return render(
         request, "public_dashboard.html",
         {
