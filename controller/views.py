@@ -5,15 +5,19 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 import boto3
+from botocore.exceptions import ClientError
 
 ec2 = boto3.client('ec2', region_name='us-east-1')
 
 
 def public_dashboard(request):
     server_is_up = False
-    response = ec2.describe_instances(InstanceIds=['i-03beacf50b1544822'])
-    print(response['Reservations'][0]['Instances'][0]['State']['Name'])
-    server_is_up = response['Reservations'][0]['Instances'][0]['State']['Name'] == 'running'
+    try:
+        response = ec2.describe_instances(InstanceIds=['i-03beacf50b1544822'])
+        print(response['Reservations'][0]['Instances'][0]['State']['Name'])
+        server_is_up = response['Reservations'][0]['Instances'][0]['State']['Name'] == 'running'
+    except ClientError as e:
+        print(e)
     return render(
         request, "public_dashboard.html",
         {
@@ -29,7 +33,7 @@ def login_page(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect('/dashboard/')
+            return HttpResponseRedirect('/')
     return render(
         request, "login_page.html",
         {

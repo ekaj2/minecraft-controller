@@ -7,14 +7,23 @@
                 <h1>
                     <strong>Hurray!</strong> Server is up.
                 </h1>
+                <div class="d-flex justify-content-center mt-5">
+                    <button hx-post="{% url 'stop-server' %}"
+                            hx-target="#main-div"
+                            type="button"
+                            class="btn btn-lg btn-outline-danger w-100">Stop Server</button>
+                </div>
             {% else %}
                 <h1>
                     <strong>Oh snap!</strong> Server is down.
                 </h1>
+                <div class="d-flex justify-content-center mt-5">
+                    <button hx-post="{% url 'start-server' %}"
+                            hx-target="#main-div"
+                            type="button"
+                            class="btn btn-lg btn-outline-success">Start Server</button>
+                </div>
             {% endif %}
-            <div class="d-flex justify-content-center mt-5">
-                <a href="dashboard" class="btn btn-lg btn-outline-warning">Manage Server</a>
-            </div>
         </div>
     </div>
 {% endblock %}
