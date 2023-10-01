@@ -10,7 +10,7 @@ from botocore.exceptions import ClientError
 ec2 = boto3.client('ec2', region_name='us-east-1')
 
 
-def public_dashboard(request):
+def server_is_running(request):
     server_is_up = False
     try:
         response = ec2.describe_instances(InstanceIds=['i-03beacf50b1544822'])
@@ -18,12 +18,22 @@ def public_dashboard(request):
         server_is_up = response['Reservations'][0]['Instances'][0]['State']['Name'] == 'running'
     except ClientError as e:
         print(e)
+        return False
+    return server_is_up
+
+
+def server_status(request):
+
     return render(
-        request, "public_dashboard.html",
+        request, "status_dependent_management.html",
         {
-            'server_is_up': server_is_up
+            'server_is_running': server_is_running(request)
         }
     )
+
+
+def public_dashboard(request):
+    return render(request, "public_dashboard.html")
 
 
 def login_page(request):
@@ -60,11 +70,27 @@ def dashboard(request):
 @require_POST
 def start_server(request):
     ec2.start_instances(InstanceIds=['i-03beacf50b1544822'])
-    return HttpResponse("<h1>Starting server...</h1>")
+    return render(request, "starting_server.html")
+
+
+def starting_server(request):
+    if server_is_running(request):
+        # 286 to cancel htmx polling
+        return HttpResponse("<h1>Server started successfully!</h1>", status=286)
+    else:
+        return HttpResponse("<h1>Starting server...</h1>")
+
+
+def stopping_server(request):
+    if server_is_running(request):
+        # 286 to cancel htmx polling
+        return HttpResponse("<h1>Server stopped successfully!</h1>", status=286)
+    else:
+        return HttpResponse("<h1>Stopping server...</h1>")
 
 
 @login_required
 @require_POST
 def stop_server(request):
     ec2.stop_instances(InstanceIds=['i-03beacf50b1544822'])
-    return HttpResponse("<h1>Stopping server...</h1>")
+    return render(request, "stopping_server.html")
