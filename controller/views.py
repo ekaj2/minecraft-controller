@@ -4,6 +4,9 @@ from django.views.decorators.http import require_GET, require_POST
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
+import boto3
+
+ec2 = boto3.client('ec2', region_name='us-west-2')
 
 
 def public_dashboard(request):
@@ -43,10 +46,12 @@ def dashboard(request):
 @login_required
 @require_POST
 def start_server(request):
+    ec2.start_instances(InstanceIds=['i-03beacf50b1544822'])
     return HttpResponse("<h1>Starting server...</h1>")
 
 
 @login_required
 @require_POST
 def stop_server(request):
+    ec2.stop_instances(InstanceIds=['i-03beacf50b1544822'])
     return HttpResponse("<h1>Stopping server...</h1>")
