@@ -10,12 +10,12 @@ from botocore.exceptions import ClientError
 ec2 = boto3.client('ec2', region_name='us-east-1')
 
 
-def server_is_running(request):
+def server_status_is(request, status="running"):
     server_is_up = False
     try:
         response = ec2.describe_instances(InstanceIds=['i-03beacf50b1544822'])
         print(response['Reservations'][0]['Instances'][0]['State']['Name'])
-        server_is_up = response['Reservations'][0]['Instances'][0]['State']['Name'] == 'running'
+        server_is_up = response['Reservations'][0]['Instances'][0]['State']['Name'] == status
     except ClientError as e:
         print(e)
         return False
@@ -27,7 +27,7 @@ def server_status(request):
     return render(
         request, "status_dependent_management.html",
         {
-            'server_is_running': server_is_running(request)
+            'server_is_running': server_status_is(request)
         }
     )
 
@@ -74,7 +74,7 @@ def start_server(request):
 
 
 def starting_server(request):
-    if server_is_running(request):
+    if server_status_is(request):
         # 286 to cancel htmx polling
         return HttpResponse("<h1>Server started successfully!</h1>", status=286)
     else:
@@ -82,7 +82,7 @@ def starting_server(request):
 
 
 def stopping_server(request):
-    if server_is_running(request):
+    if server_status_is(request, "stopped"):
         # 286 to cancel htmx polling
         return HttpResponse("<h1>Server stopped successfully!</h1>", status=286)
     else:
